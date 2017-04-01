@@ -5,10 +5,9 @@ In these API docs, a **higher-order component (HOC)** refers to a function that 
 **withFetch** helper is a function that return **higher-order component**:
 
 ```javascript
-//define an object containing some options
 import { withFetch } from 'react-fetch-hoc';
 
-const BaseComponent = props => <div>{props.jsonData}</div>;
+const BaseComponent = props => <div>{JSON.stringify(props.jsonData, null, 2)}</div>;
 
 //Options needed by react-fetch HOC
 const options = {
