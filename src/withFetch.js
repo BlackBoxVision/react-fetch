@@ -2,7 +2,15 @@ import React from 'react';
 import fetch from 'isomorphic-fetch';
 
 export default function withFetch(options) {
-    const { url, config, delay = 2000, renderOnServer, LoadingComponent, ErrorComponent } = options;
+    const {
+        url,
+        config,
+        delay = 2000,
+        polling = false,
+        renderOnServer = false,
+        LoadingComponent = (props) => <div>Loading..</div>,
+        ErrorComponent = ({ message, stack }) => <div>{message}</div>
+    } = options;
 
     return ReactComponent => {
         class FetchComponent extends React.Component {
@@ -13,11 +21,11 @@ export default function withFetch(options) {
             }
 
             componentDidMount() {
-                !renderOnServer && setTimeout(this.fetchData, delay);
+                this.handleDataFetching();
             }
 
             componentWillMount() {
-                renderOnServer && setTimeout(this.fetchData, delay);
+                this.handleDataFetching();
             }
 
             render() {
@@ -32,8 +40,24 @@ export default function withFetch(options) {
                 }
             }
 
+            handleDataFetching() {
+                if (polling) {
+                    !renderOnServer && setTimeout(this.fetchData, delay);
+                } else {
+                    !renderOnServer && setInterval(this.fetchData, delay);
+                }
+            }
+
             async fetchData() {
                 try {
+                    if (!url) {
+                        throw new Error('URL is undefined. You should define url key in your options object.');
+                    }
+
+                    if (!config || config === {}) {
+                        throw new Error('Config is undefined or empty. You should define config key in your options object.');
+                    }
+
                     const response = await fetch(url, config);
                     const data = await response.json();
 
