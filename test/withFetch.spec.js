@@ -95,6 +95,16 @@ describe('Testing -> <FetchComponent/>', () => {
         expect(WrappedComponent.prototype.componentWillUnmount).to.be.a('function');
     });
 
+    it('set data and loading in false in <FetchComponent/>', () => {
+        const wrapper = getRenderedComponent();
+        wrapper.setState({ data: { result: "awesome result" }, loading: false });
+    });
+
+    it('set error and loading in false in <FetchComponent/>', () => {
+        const wrapper = getRenderedComponent();
+        wrapper.setState({ error: "some error", loading: false });
+    });
+
     it('if no url is passed it throws an error', () => {
         try {
             withFetch({})(Component);
@@ -105,7 +115,7 @@ describe('Testing -> <FetchComponent/>', () => {
 
     it('if no config is passed it throws an error', () => {
         try {
-            withFetch({ url: '' })(Component);
+            withFetch({ url: '', config: null })(Component);
         } catch (err) {
             expect(err.message).to.equal('Config is undefined or empty. You should define config key in your options object.');
         }
