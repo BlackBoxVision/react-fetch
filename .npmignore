@@ -1,0 +1,9 @@
+.babelrc
+.gitignore
+.travis.yml
+.idea
+docs
+node_modules
+src
+test
+LICENSE

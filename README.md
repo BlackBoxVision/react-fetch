@@ -1,2 +1,36 @@
 # react-fetch
-High Order Component to provide data fetching capabilities
+> High Order Component to provide data fetching capabilities
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT) [![npm version](https://badge.fury.io/js/react-fetch.svg)](https://badge.fury.io/js/react-fetch) [![npm downloads](https://img.shields.io/npm/dm/react-fetch.svg)](https://www.npmjs.com/package/react-fetch)  [![Build Status](https://travis-ci.org/BlackBoxVision/react-fetch.svg?branch=master)](https://travis-ci.org/BlackBoxVision/react-fetch) [![codecov](https://codecov.io/gh/BlackBoxVision/react-fetch/branch/master/graph/badge.svg)](https://codecov.io/gh/BlackBoxVision/react-fetch) [![Coverage Status](https://coveralls.io/repos/github/BlackBoxVision/react-fetch/badge.svg)](https://coveralls.io/github/BlackBoxVision/react-fetch?branch=master)
+
+[![NPM](https://nodei.co/npm/react-fetch.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/link-state-hoc/) [![NPM](https://nodei.co/npm-dl/link-state-hoc.png?months=9&height=3)](https://nodei.co/npm/link-state-hoc/) 
+
+## Installation
+
+**YARN**
+
+```bash
+yarn add react-fetch-hoc
+```
+
+**NPM**
+
+```bash
+npm install --save react-fetch-hoc
+```
+
+## API Docs
+
+[Read them here](docs/API.md)
+
+## Issues
+
+If you found a bug, or you have an answer, or whatever. Please, open an [issue](https://github.com/BlackBoxVision/react-fetch/issues). I will do the best to fix it, or help you.
+
+## Contributing
+
+Of course, if you see something that you want to upgrade from this library, or a bug that needs to be solved, **PRs are welcome!**
+
+## License
+
+Distributed under the **MIT license**. See [LICENSE](https://github.com/BlackBoxVision/react-fetch/blob/master/LICENSE) for more information.
