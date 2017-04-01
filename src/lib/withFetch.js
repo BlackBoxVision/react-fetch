@@ -8,8 +8,8 @@ export default function withFetch(options) {
         delay = 2000,
         polling = false,
         renderOnServer = false,
-        LoadingComponent = (props) => <div>Loading..</div>,
-        ErrorComponent = ({ message, stack }) => <div>{message}</div>
+        LoadingComponent = ({ message = "Loading..." }) => <div>{message}</div>,
+        ErrorComponent = ({ error: { message, stack } }) => <div>{message}</div>
     } = options;
 
     return ReactComponent => {
@@ -29,11 +29,8 @@ export default function withFetch(options) {
             }
 
             componentWillMount() {
-                if (!polling) {
-                    renderOnServer && this.fetchTimeout()
-                } else {
-                    renderOnServer && this.fetchInterval();
-                }
+                //On server we only fetch data needed once. Polling is done client side.
+                !polling && renderOnServer && this.fetchTimeout();
             }
 
             componentWillUnmount() {
@@ -47,7 +44,7 @@ export default function withFetch(options) {
                 if (loading) {
                     return <LoadingComponent/>;
                 } else if (error) {
-                    return <ErrorComponent error={error.message} stack={error.stack}/>
+                    return <ErrorComponent error={error}/>
                 } else {
                     return <ReactComponent jsonData={data} {...props}/>
                 }
