@@ -3,7 +3,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT) [![npm version](https://badge.fury.io/js/react-fetch-hoc.svg)](https://badge.fury.io/js/react-fetch-hoc) [![npm downloads](https://img.shields.io/npm/dm/react-fetch-hoc.svg)](https://www.npmjs.com/package/react-fetch-hoc)  [![Build Status](https://travis-ci.org/BlackBoxVision/react-fetch-hoc.svg?branch=master)](https://travis-ci.org/BlackBoxVision/react-fetch-hoc) [![codecov](https://codecov.io/gh/BlackBoxVision/react-fetch-hoc/branch/master/graph/badge.svg)](https://codecov.io/gh/BlackBoxVision/react-fetch-hoc) [![Coverage Status](https://coveralls.io/repos/github/BlackBoxVision/react-fetch-hoc/badge.svg)](https://coveralls.io/github/BlackBoxVision/react-fetch-hoc?branch=master)
 
-[![NPM](https://nodei.co/npm/react-fetch-hoc.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/link-state-hoc/) [![NPM](https://nodei.co/npm-dl/link-state-hoc.png?months=9&height=3)](https://nodei.co/npm/link-state-hoc/) 
+[![NPM](https://nodei.co/npm/react-fetch-hoc.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/react-fetch-hoc/) [![NPM](https://nodei.co/npm-dl/react-fetch-hoc.png?months=9&height=3)](https://nodei.co/npm/react-fetch-hoc/) 
 
 ## Installation
 
