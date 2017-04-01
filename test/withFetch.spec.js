@@ -88,6 +88,13 @@ describe('Testing -> <FetchComponent/>', () => {
         expect(WrappedComponent.prototype.componentDidMount).to.be.a('function');
     });
 
+    it('it calls componentWillUnmount <FetchComponent/>', () => {
+        const WrappedComponent = withFetch({...options, polling: true })(Component);
+        const wrapper = getMountedComponent(withFetch({...options, polling: true })(Component));
+
+        expect(WrappedComponent.prototype.componentWillUnmount).to.be.a('function');
+    });
+
     it('if no url is passed it throws an error', () => {
         try {
             withFetch({})(Component);
