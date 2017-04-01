@@ -2,7 +2,7 @@ import React from 'react';
 import fetch from 'isomorphic-fetch';
 
 export default function withFetch(options) {
-    const { url, config, renderOnServer, LoadingComponent, ErrorComponent } = options;
+    const { url, config, delay = 200, renderOnServer, LoadingComponent, ErrorComponent } = options;
 
     return ReactComponent => {
         class FetchComponent extends React.Component {
@@ -13,11 +13,11 @@ export default function withFetch(options) {
             }
 
             componentDidMount() {
-                !renderOnServer && this.fetchData();
+                !renderOnServer && setTimeout(delay, this.fetchData);
             }
 
             componentWillMount() {
-                renderOnServer && this.fetchData();
+                renderOnServer && setTimeout(delay, this.fetchData());
             }
 
             render() {
@@ -26,9 +26,9 @@ export default function withFetch(options) {
                 if (loading) {
                     return <LoadingComponent/>;
                 } else if (error) {
-                    return <ErrorComponent error={error.message}/>
+                    return <ErrorComponent error={error.message} stack={error.stack}/>
                 } else {
-                    return <ReactComponent {...data} {...props}/>
+                    return <ReactComponent jsonData={data} {...props}/>
                 }
             }
 
