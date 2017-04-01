@@ -2,7 +2,7 @@
 
 In these API docs, a **higher-order component (HOC)** refers to a function that accepts a single React component and returns a new React component.
 
-**withFetch** helper is a function that return **higher-order component**:
+**withFetch** helper is a function that return a **higher-order component**:
 
 ```javascript
 import { withFetch } from 'react-fetch-hoc';
@@ -29,7 +29,7 @@ const EnhancedComponent = hoc(BaseComponent);
 const EnhancedComponent = withFetch(options)(BaseComponent);
 ```
 
-Also, another way to use it, it's as a **decorator**: 
+Also, another way to use is as a **decorator**: 
 
 ```javascript
 import { withFetch } from 'react-fetch-hoc';
