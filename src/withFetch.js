@@ -21,11 +21,24 @@ export default function withFetch(options) {
             }
 
             componentDidMount() {
-                this.handleDataFetching();
+                if (!polling) {
+                    !renderOnServer && this.fetchTimeout();
+                } else {
+                    !renderOnServer && this.fetchInterval();
+                }
             }
 
             componentWillMount() {
-                this.handleDataFetching();
+                if (!polling) {
+                    renderOnServer && this.fetchTimeout()
+                } else {
+                    renderOnServer && this.fetchInterval();
+                }
+            }
+
+            componentWillUnmount() {
+                this.interval && clearInterval(this.interval);
+                this.timeout && clearTimeout(this.timeout);
             }
 
             render() {
@@ -37,14 +50,6 @@ export default function withFetch(options) {
                     return <ErrorComponent error={error.message} stack={error.stack}/>
                 } else {
                     return <ReactComponent jsonData={data} {...props}/>
-                }
-            }
-
-            handleDataFetching() {
-                if (!polling) {
-                    !renderOnServer && setTimeout(this.fetchData, delay);
-                } else {
-                    !renderOnServer && setInterval(this.fetchData, delay);
                 }
             }
 
@@ -65,6 +70,14 @@ export default function withFetch(options) {
                 } catch (error) {
                     this.setState({ error, loading: !this.state.loading });
                 }
+            }
+
+            fetchInterval() {
+                this.interval = setInterval(this.fetchData, delay);
+            }
+
+            fetchTimeout() {
+                this.timeout = setTimeout(this.fetchData, delay);
             }
         }
 
