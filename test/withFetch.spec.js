@@ -39,4 +39,28 @@ describe('Testing -> <FetchComponent/>', () => {
     it('linkState from <FetchComponent/> is not undefined', () => {
         expect(getRenderedComponent().find('fetchData')).to.not.equal('undefined');
     });
+
+    it('loading in <FetchComponent/> is a Boolean value', () => {
+        expect(getRenderedComponent().state().loading).to.be.a('boolean');
+    });
+
+    it('loading in <FetchComponent/> is true', () => {
+        expect(getRenderedComponent().state().loading).to.equal(true);
+    });
+
+    it('data in <FetchComponent/> is a null value', () => {
+        expect(getRenderedComponent().state().data).to.be.a('null');
+    });
+
+    it('data in <FetchComponent/> is null', () => {
+        expect(getRenderedComponent().state().data).to.equal(null);
+    });
+
+    it('error in <FetchComponent/> is a null value', () => {
+        expect(getRenderedComponent().state().error).to.be.a('null');
+    });
+
+    it('error in <FetchComponent/> is null', () => {
+        expect(getRenderedComponent().state().error).to.equal(null);
+    });
 })
