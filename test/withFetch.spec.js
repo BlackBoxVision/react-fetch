@@ -1,7 +1,8 @@
+import 'jsdom-global/register';
 import React from 'react';
 
 import { expect } from 'chai';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 import { withFetch } from '../src/index';
 
@@ -18,6 +19,7 @@ const options = {
 const Component = ({ jsonData }) => <div>{JSON.stringify(jsonData, null, 2)}</div>
 const WrappedComponent = withFetch(options)(Component);
 const getRenderedComponent = (component = WrappedComponent) => shallow(React.createElement(component));
+const getMountedComponent = (component = WrappedComponent) => mount(React.createElement(component));
 
 describe('Testing -> <FetchComponent/>', () => {
     it('instance of <FetchComponent/> is not undefined', () => {
@@ -36,11 +38,19 @@ describe('Testing -> <FetchComponent/>', () => {
         expect(getRenderedComponent().find(Component)).to.not.equal('null');
     });
 
-    it('linkState from <FetchComponent/> is not undefined', () => {
+    it('fetchData from <FetchComponent/> is not undefined', () => {
         expect(getRenderedComponent().find('fetchData')).to.not.equal('undefined');
     });
 
-    it('loading in <FetchComponent/> is a Boolean value', () => {
+    it('fetchInterval from <FetchComponent/> is not undefined', () => {
+        expect(getRenderedComponent().find('fetchInterval')).to.not.equal('undefined');
+    });
+
+    it('fetchTimeout from <FetchComponent/> is not undefined', () => {
+        expect(getRenderedComponent().find('fetchTimeout')).to.not.equal('undefined');
+    });
+
+    it('loading in <FetchComponent/> is a boolean value', () => {
         expect(getRenderedComponent().state().loading).to.be.a('boolean');
     });
 
@@ -62,6 +72,20 @@ describe('Testing -> <FetchComponent/>', () => {
 
     it('error in <FetchComponent/> is null', () => {
         expect(getRenderedComponent().state().error).to.equal(null);
+    });
+
+    it('it calls componentWillMount <FetchComponent/>', () => {
+        const WrappedComponent = withFetch(options)(Component);
+        const wrapper = getMountedComponent();
+
+        expect(WrappedComponent.prototype.componentDidMount).to.be.a('function');
+    });
+
+    it('it calls componentDidMount <FetchComponent/>', () => {
+        const WrappedComponent = withFetch({...options, polling: true })(Component);
+        const wrapper = getMountedComponent(withFetch({...options, polling: true })(Component));
+
+        expect(WrappedComponent.prototype.componentDidMount).to.be.a('function');
     });
 
     it('if no url is passed it throws an error', () => {

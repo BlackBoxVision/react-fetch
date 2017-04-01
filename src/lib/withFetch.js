@@ -53,11 +53,11 @@ export default function withFetch(options) {
             async fetchData() {
                 try {
                     if (!url) {
-                        throw new Error('URL is undefined. You should define url key in your options object.');
+                        throw 'URL is undefined. You should define url key in your options object.';
                     }
 
                     if (!config || config === {}) {
-                        throw new Error('Config is undefined or empty. You should define config key in your options object.');
+                        throw 'Config is undefined or empty. You should define config key in your options object.';
                     }
 
                     const response = await fetch(url, config);
