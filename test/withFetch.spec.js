@@ -63,4 +63,20 @@ describe('Testing -> <FetchComponent/>', () => {
     it('error in <FetchComponent/> is null', () => {
         expect(getRenderedComponent().state().error).to.equal(null);
     });
+
+    it('if no url is passed it throws an error', () => {
+        try {
+            withFetch({})(Component);
+        } catch (err) {
+            expect(err.message).to.equal('URL is undefined. You should define url key in your options object.');
+        }
+    });
+
+    it('if no config is passed it throws an error', () => {
+        try {
+            withFetch({ url: '' })(Component);
+        } catch (err) {
+            expect(err.message).to.equal('Config is undefined or empty. You should define config key in your options object.');
+        }
+    });
 })
