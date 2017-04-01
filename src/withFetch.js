@@ -41,7 +41,7 @@ export default function withFetch(options) {
             }
 
             handleDataFetching() {
-                if (polling) {
+                if (!polling) {
                     !renderOnServer && setTimeout(this.fetchData, delay);
                 } else {
                     !renderOnServer && setInterval(this.fetchData, delay);
