@@ -13,8 +13,7 @@ const BaseComponent = props => <div>{JSON.stringify(props.jsonData, null, 2)}</d
 const options = {
     url: '/api/users',
     config: {
-        //Fetch config
-        ...
+        method: 'GET'
     },
     delay: 2000,
     polling: false,
